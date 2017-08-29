@@ -92,7 +92,7 @@ function Game() {
         gameOn = false;
         musicTheme.pause();
         musicTheme.currentTime = 0;
-        setGameEndingTime();
+        calc.setGameEndingTime(saveGameScores);
         switch (reason) {
             case 'hole':
                 display.fall(display.showResetButton);
@@ -124,6 +124,14 @@ function Game() {
                 events.crossLeft();
             }
         }
+    }
+
+    function saveGameScores() {
+        user.lastScore = gameTime;
+        user.lastScoreDateTime = calc.formattedDateTime();
+        user.gameId = 2;
+
+        $.post('/api/Games/saveLastScore', user);
     }
 
 }

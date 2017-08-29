@@ -71,7 +71,6 @@ class TheChaseService
     {
         try {
             $ranking = Mapper::populate(new RankingEntryModel(), $params);
-            $ranking->setGameId(1);
             $ranking->setUserId($userId);
             $factory = new RankingFactory();
             $factory->insert($ranking);

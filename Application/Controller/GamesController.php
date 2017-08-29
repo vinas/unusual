@@ -14,6 +14,7 @@ use SaSeed\Output\RestView;
 use SaSeed\Handlers\Exceptions;
 
 use Application\Service\TheChaseService;
+use Application\Service\AsciiWorldService;
 
 class GamesController
 {
@@ -28,9 +29,7 @@ class GamesController
 	{
 		$res = false;
 		try {
-			if ($this->params['gameId'] == 1) {
-				$service = new TheChaseService();
-			}
+			$service = new TheChaseService();
 			$service->saveLastScore($this->params);
 			$res = (object) array('status' => 'saved');
 		} catch (Exception $e) {

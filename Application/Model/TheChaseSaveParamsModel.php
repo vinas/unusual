@@ -16,6 +16,7 @@ class TheChaseSaveParamsModel implements \JsonSerializable
     private $firstName;
     private $name;
     private $fbId;
+    private $gameId;
     private $picture;
     private $lastScore;
     private $lastScoreDateTime;
@@ -39,6 +40,13 @@ class TheChaseSaveParamsModel implements \JsonSerializable
 	}
 	public function getFbId() {
 		return $this->fbId;
+	}
+
+	public function setGameId($gameId = false) {
+		$this->gameId = $gameId;
+	}
+	public function getGameId() {
+		return $this->gameId;
 	}
 
 	public function setPicture($picture = false) {

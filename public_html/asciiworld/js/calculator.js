@@ -14,13 +14,25 @@ function Calculator() {
     this.areTouching = areTouching;
     this.isVisible = isVisible;
     this.isOverHole = isOverHole;
+    this.formattedDateTime = formattedDateTime;
 
     return this;
 
-    function setGameEndingTime() {
+    function formattedDateTime() {
+        var currentdate = new Date(); 
+        return addZero(currentdate.getDate()) + "/"
+            + addZero(currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + addZero(currentdate.getHours()) + ":"  
+            + addZero(currentdate.getMinutes()) + ":" 
+            + addZero(currentdate.getSeconds());
+    }
+
+    function setGameEndingTime(callback) {
         var finalTime = +new Date();
-        gameTime = finalTime - time;
+        gameTime = millisToMinutesAndSeconds(finalTime - time);
         timer = 0;
+        callback();
     }
 
     function touchedEnemy() {
@@ -208,6 +220,11 @@ function Calculator() {
                 && elATop + getCoord(elementA.style.height) - 2 >= elBTop
                 && elATop < elBTop + getCoord(elementB.style.height) - 2
             );
+    }
+
+    function millisToMinutesAndSeconds(millis) {
+        var date = new Date(millis);
+        return date.getUTCMinutes() + ':' + addZero(date.getUTCSeconds(), 2) + ':' + date.getUTCMilliseconds();
     }
 
 }

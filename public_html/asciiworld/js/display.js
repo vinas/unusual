@@ -591,7 +591,7 @@ function Display() {
 
     function showResetButton() {
         document.getElementById('gameOver').style.display = 'block';
-        document.getElementById('gameTime').innerHTML = millisToMinutesAndSeconds(gameTime);
+        document.getElementById('gameTime').innerHTML = gameTime;
         document.getElementById('lastStage').innerHTML = currMap+1;
         display.updateTime();
     }
@@ -719,11 +719,6 @@ function Display() {
         document.getElementById(elemId).style.display = 'none';
     }
 
-    function millisToMinutesAndSeconds(millis) {
-        var date = new Date(millis);
-        return date.getUTCMinutes() + ':' + addZero(date.getUTCSeconds(), 2) + ':' + date.getUTCMilliseconds();
-    }
-
     function addZero(i) {
         if (i < 10) {
             i = "0" + i;
@@ -745,7 +740,7 @@ function Display() {
     }
 
     function levelScore() {
-        document.getElementById('gameTime').innerHTML = millisToMinutesAndSeconds(gameTime);
+        document.getElementById('gameTime').innerHTML = gameTime;
         document.getElementById('lastStage').innerHTML = currMap+1;
         document.getElementById('gameElements').style.display = 'none';
         document.getElementById('levelScore').style.display = 'block';

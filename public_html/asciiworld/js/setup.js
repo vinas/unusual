@@ -262,15 +262,13 @@ function Setup() {
         }
     }
 
-    function setSounds(callback) {
+    function setSounds() {
         musicTheme = new Audio('audio/Pocketmaster_-_07_-_Ride.mp3');
         charJumpSound = new Audio('audio/SFX_Jump_31_0.mp3');
         ufoLaserSound = new Audio('audio/tir.mp3');
         charArrowSound = new Audio('audio/laserfire01.ogg.mp3');
         pigJumpSound = new Audio('audio/jumppp22.ogg.mp3');
         explosionSound = new Audio('audio/8bit_bomb_explosion.wav.mp3');
-
-        callback();
     }
 
     function isLandscape() {
