@@ -145,7 +145,7 @@ function Events()
         });
 
         document.getElementById('login').addEventListener('click', function() {
-            login.checkFbLogin();
+            login.checkFbLogin('thechase', '725598060832930');
         });
 
         document.getElementById('rankingButton').addEventListener('click', function() {

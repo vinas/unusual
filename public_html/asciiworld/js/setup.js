@@ -8,6 +8,7 @@ function Setup() {
     this.loadContent = loadContent;
     this.prepareSoundsForMobile = prepareSoundsForMobile;
     this.areSettingsOk = areSettingsOk;
+    this.handleLogin = handleLogin;
 
     return this;
 
@@ -261,13 +262,15 @@ function Setup() {
         }
     }
 
-    function setSounds() {
+    function setSounds(callback) {
         musicTheme = new Audio('audio/Pocketmaster_-_07_-_Ride.mp3');
         charJumpSound = new Audio('audio/SFX_Jump_31_0.mp3');
         ufoLaserSound = new Audio('audio/tir.mp3');
         charArrowSound = new Audio('audio/laserfire01.ogg.mp3');
         pigJumpSound = new Audio('audio/jumppp22.ogg.mp3');
         explosionSound = new Audio('audio/8bit_bomb_explosion.wav.mp3');
+
+        callback();
     }
 
     function isLandscape() {
@@ -280,4 +283,37 @@ function Setup() {
         return check;
     };
 
+    function handleLogin() {
+        var accessCode = login.checkForFbAccessCode(),
+            loginAttempts = 0;
+        if (accessCode && !user.fbId) {
+            //display.loadingButton();
+            document.getElementById('loadingImg').style.display = 'block';
+            document.getElementById('startGameImg').style.display = 'none';
+            document.getElementById('loginButtonImg').style.display = 'none';
+            login.getFbAccessToken('asciiworld', '466659723719256', 'c14236bb2b7f89a2c6f2aef5f7444fc0', accessCode);
+            waitForUserInfo();
+            return;
+        } else {
+            //display.loginButton();
+            document.getElementById('loadingImg').style.display = 'none';
+            document.getElementById('startGameImg').style.display = 'none';
+            document.getElementById('loginButtonImg').style.display = 'block';
+        }
+
+        function waitForUserInfo() {
+            setTimeout(function() {
+                if (user.fbId) {
+                    display.startButton();
+                    return;
+                }
+                loginAttempts++;
+                if (loginAttempts < 32) {
+                    waitForUserInfo();
+                    return;
+                }
+                display.loginButton();
+            }, 250);
+        }
+    }
 }

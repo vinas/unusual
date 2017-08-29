@@ -1,7 +1,8 @@
 var charDiv,
     charmanImg,
     bkgLayer,
-    gameOn = true;
+    gameOn = true,
+    user = {};
 
 var musicTheme,
     charJumpSound,

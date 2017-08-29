@@ -48,6 +48,9 @@ function Display() {
     this.levelScore = levelScore;
     this.errorNotMobile = errorNotMobile;
     this.errorNotLandscape = errorNotLandscape;
+    this.loadingButton = loadingButton;
+    this.startButton = startButton;
+    this.loginButton = loginButton;
 
     init();
 
@@ -84,6 +87,24 @@ function Display() {
             boom.style.width = '10%';
             boom.style.height = '20%';
         }
+    }
+
+    function loadingButton() {
+        document.getElementById('startGameImg').style.display = 'none';
+        document.getElementById('loginButtonImg').style.display = 'none';
+        document.getElementById('loadingImg').style.display = 'block';
+    }
+
+    function startButton() {
+        document.getElementById('loadingImg').style.display = 'none';
+        document.getElementById('loginButtonImg').style.display = 'none';
+        document.getElementById('startGameImg').style.display = 'block';
+    }
+
+    function loginButton() {
+        document.getElementById('loadingImg').style.display = 'none';
+        document.getElementById('startButton').style.display = 'none';
+        document.getElementById('loginButtonImg').style.display = 'block';
     }
 
     function errorNotMobile() {

@@ -5,6 +5,7 @@
         <title>Ascii World Adventure</title>
         <meta content='width=100%, user-scalable=no, initial-scale=1.0' name='viewport' />
 
+        <script type="text/javascript" src="/js/libs/jquery-2.1.1.min.js"></script>
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
@@ -44,7 +45,11 @@
                 </div>
             </div>
         </div>
-        <div id="startGame" onclick="game.init()"><img src="img/game-start.gif" id="startGameImg" /></div>
+        <div id="startGame">
+            <img src="img/game-start.gif" id="startGameImg" class="startScreenButton" onclick="game.init()" />
+            <img src="img/login.png" id="loginButtonImg" class="startScreenButton" onclick="events.fbLogin()" />
+            <img src="img/loader.gif" id="loadingImg" class="startScreenButton" style="display: block;" />
+        </div>
         <div id="errorScreen"></div>
         <div id="gameOver" onclick="events.reset()">
             <!--label>Estágio alcançado: </label>
@@ -60,15 +65,17 @@
             <img src="img/game-start.gif" id="startGameImg" />
         </div>
     </body>
+
+    <script type="text/javascript" src="/js/login.js"></script>
     <!-- game js files begin -->
-    <script type="text/javascript" src="js/scripts/globals.js"></script>
-    <script type="text/javascript" src="js/scripts/level01.js"></script>
-    <!--script type="text/javascript" src="js/scripts/dialogs.js"></script-->
-    <script type="text/javascript" src="js/scripts/setup.js"></script>
-    <script type="text/javascript" src="js/scripts/display.js"></script>
-    <script type="text/javascript" src="js/scripts/calculator.js"></script>
-    <script type="text/javascript" src="js/scripts/events.js"></script>
-    <script type="text/javascript" src="js/scripts/game.js"></script>
-    <script type="text/javascript" src="js/scripts/start-app.js"></script>
+    <script type="text/javascript" src="js/globals.js"></script>
+    <script type="text/javascript" src="js/level01.js"></script>
+    <!--script type="text/javascript" src="js/dialogs.js"></script-->
+    <script type="text/javascript" src="js/setup.js"></script>
+    <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/calculator.js"></script>
+    <script type="text/javascript" src="js/events.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/start-app.js"></script>
     <!-- game js files end -->
 </html>

@@ -7,19 +7,25 @@ function Login() {
 
     return this;
 
-    function checkFbLogin() {
-        window.location.href = 'https://www.facebook.com/v2.10/dialog/oauth?client_id=725598060832930&redirect_uri=http://unusualdev.com/thechase/';
+    function checkFbLogin(game, clientId) {
+        window.location.href = 'https://www.facebook.com/v2.10/dialog/oauth?client_id='+clientId+'&redirect_uri=http://unusualdev.com/'+game+'/';
     }
 
     function checkForFbAccessCode() {
         var url = new URL(window.location.href);
-        return url.searchParams.get("code");
+        return url.searchParams.get('code');
     }
 
-    function getFbAccessToken(code) {
+    /**
+     * @String game's folder
+     * @String fb's client_id
+     * @String fb's client secret
+     * @String fb given access code
+    */
+    function getFbAccessToken(game, clientId, secret, code) {
         if (code)
             $.get(
-                'https://graph.facebook.com/v2.10/oauth/access_token?client_id=725598060832930&redirect_uri=http://unusualdev.com/thechase/&client_secret=e217cc077e95f1a727147cdc69b2ab03&code='+code,
+                'https://graph.facebook.com/v2.10/oauth/access_token?client_id='+clientId+'&redirect_uri=http://unusualdev.com/'+game+'/&client_secret='+secret+'&code='+code,
                 fetchUserInfo
             );
     }

@@ -9,8 +9,22 @@ function Events()
     this.crossRight = crossRight;
     this.crossLeft = crossLeft;
     this.triggers = triggers;
- 
+    this.fbLogin = fbLogin;
+
+    init();
+
     return this;
+
+    function init() {
+        setup.handleLogin();
+        /*var code = login.checkForFbAccessCode();
+        handleLogin
+        login.checkFbLogin('asciiworld', '466659723719256');*/
+    }
+
+    function fbLogin() {
+        login.checkFbLogin('asciiworld', '466659723719256');
+    }
 
     function triggers() {
         var trigger = levelTriggers[currMap][Math.floor(leftPos)+FLOORHORTOLERANCE];

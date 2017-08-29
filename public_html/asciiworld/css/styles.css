@@ -68,7 +68,14 @@ html, body {
 #startGameImg {
     margin-top: 11%;
     width: 40%;
+}
+
+.startScreenButton {
+    margin-top: 11%;
     height: 42%;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #levelScore {

@@ -52,7 +52,7 @@ function Setup()
             loginAttempts = 0;
         if (accessCode && !user.fbId) {
             display.loadingButton();
-            login.getFbAccessToken(accessCode);
+            login.getFbAccessToken('thechase', '725598060832930', 'e217cc077e95f1a727147cdc69b2ab03', accessCode);
             waitForUserInfo();
             return;
         } else {

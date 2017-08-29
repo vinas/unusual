@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+    login = Login();
     setup = Setup();
     events = Events();
     calc = Calculator();
