@@ -92,7 +92,6 @@ function Game() {
         gameOn = false;
         musicTheme.pause();
         musicTheme.currentTime = 0;
-        calc.setGameEndingTime(saveGameScores);
         switch (reason) {
             case 'hole':
                 display.fall(display.showResetButton);
@@ -105,6 +104,7 @@ function Game() {
                 display.abduction();
                 break;
             case 'nextLevel':
+                calc.setGameEndingTime(saveGameScores);
                 display.levelScore();
         }
     }

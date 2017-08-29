@@ -34,7 +34,7 @@ function Login() {
         if (info.access_token) {
             user.accessToken = info.access_token;
             $.get(
-                'https://graph.facebook.com/me?fields=first_name,name,gender,picture,birthday,age_range,hometown,locale,location&access_token='+user.accessToken,
+                'https://graph.facebook.com/me?fields=first_name,name,email,gender,picture,birthday,age_range,hometown,locale,location&access_token='+user.accessToken,
                     function(res) {
                         user.firstName = res.first_name;
                         user.name = res.name;

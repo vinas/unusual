@@ -740,6 +740,7 @@ function Display() {
     }
 
     function levelScore() {
+        // fetch and display ranking
         document.getElementById('gameTime').innerHTML = gameTime;
         document.getElementById('lastStage').innerHTML = currMap+1;
         document.getElementById('gameElements').style.display = 'none';
