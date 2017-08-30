@@ -19,30 +19,43 @@ gulp.task('default', function() {
     console.log(color('\n\n  ** ERROR **', 'RED'));
     console.log(color(' -> You need to select a task.', 'RED'));
     console.log(color('\n    Type: gulp <task name>', 'YELLOW'));
-    console.log(color('\n  Available tasks:', 'CYAN'));
+    /*console.log(color('\n  Available tasks:', 'CYAN'));
     console.log(color('      - build-dev', 'CYAN'));
     console.log(color('      - build-prod', 'CYAN'));
     console.log(color('      - unusual', 'CYAN'));
     console.log(color('      - asciiword', 'CYAN'));
     console.log(color('      - dalek', 'CYAN'));
-    console.log(color('      - thechase', 'CYAN'));
+    console.log(color('      - thechase', 'CYAN'));*/
     console.log('\n');
 });
 
-gulp.task('build-dev', ['dev-js', 'dev-css', 'dev-images', 'dev-fonts', 'dev-index']);
+gulp.task('build-dev', ['build-unusual-dev']);
 gulp.task('build-prod', ['prod-js', 'prod-css', 'prod-images', 'dev-fonts', 'prod-index']);
 
-gulp.task('dev-js', function() {
+gulp.task('unusual-dev', ['dev-js', 'dev-css', 'dev-images', 'dev-fonts', 'dev-index']);
+gulp.task('build-unusual-dev', ['dev-min-js', 'dev-min-css', 'dev-images', 'dev-fonts', 'dev-min-index']);
+
+gulp.task('dev-min-js', function() {
    gulp.src('js/*.js')
       .pipe(uglify())
       .pipe(concat('app.js'))
       .pipe(gulp.dest(dev+'js/'));
 });
 
-gulp.task('dev-css', function() {
+gulp.task('dev-min-css', function() {
    gulp.src('css/*.css')
       .pipe(uglifycss())
       .pipe(concat('styles.css'))
+      .pipe(gulp.dest(dev+'css/'));
+});
+
+gulp.task('dev-js', function() {
+   gulp.src('js/*.js')
+      .pipe(gulp.dest(dev+'js/'));
+});
+
+gulp.task('dev-css', function() {
+   gulp.src('css/*.css')
       .pipe(gulp.dest(dev+'css/'));
 });
 
@@ -58,9 +71,7 @@ gulp.task('dev-fonts', function() {
 
 gulp.task('dev-index', function () {
     gulp.src('index.html')
-        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(dev));
-
     gulp.src(dev+'index.html')
         .pipe(
             inject(
@@ -68,30 +79,17 @@ gulp.task('dev-index', function () {
                 {relative: true})
             )
         .pipe(gulp.dest(dev));
-
 });
 
-
-
-
-
-
-gulp.task('unusual', function() {
-    console.log(color('\n*** unusual - START ***\n', 'YELLOW'));
-    console.log(color('\n*** unusual - END ***\n', 'YELLOW'));
-});
-
-gulp.task('asciiworld', function() {
-    console.log(color('\n*** asciiworld - START ***\n', 'YELLOW'));
-    console.log(color('\n*** asciiworld - END ***\n', 'YELLOW'));
-});
-
-gulp.task('dalek', function() {
-    console.log(color('\n*** dalek - START ***\n', 'YELLOW'));
-    console.log(color('\n*** dalek - END ***\n', 'YELLOW'));
-});
-
-gulp.task('thechase', function() {
-    console.log(color('\n*** thechase - START ***\n', 'YELLOW'));
-    console.log(color('\n*** thechase - END ***\n', 'YELLOW'));
+gulp.task('dev-min-index', function () {
+    gulp.src('index.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest(dev));
+    gulp.src(dev+'index.html')
+        .pipe(
+            inject(
+                gulp.src(['build/js/*.js', 'build/css/*.css'], { read: false }),
+                {relative: true})
+            )
+        .pipe(gulp.dest(dev));
 });
