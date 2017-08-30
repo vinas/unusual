@@ -1,0 +1,28 @@
+{
+  "name": "unusualdev",
+  "version": "1.0.0",
+  "description": "Unusual Dev package.json file that will (hopefully) help me manage front-end dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinas/unusualdev.git"
+  },
+  "keywords": [
+    "unusual",
+    "unusualdev",
+    "unusual-dev"
+  ],
+  "author": "Vinas - vinas.andrade@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinas/unusualdev/issues"
+  },
+  "homepage": "https://github.com/vinas/unusualdev#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-color": "0.0.1"
+  }
+}
