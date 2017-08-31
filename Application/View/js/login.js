@@ -7,7 +7,7 @@ function Login() {
 
     return this;
 
-    function checkFbLogin(clientId) {
+    function checkFbLogin() {
         window.location.href = 'https://www.facebook.com/v2.10/dialog/oauth?client_id=309691342772623&redirect_uri=http://unusualdev.com/';
     }
 
@@ -40,6 +40,7 @@ function Login() {
                     user.name = res.name;
                     user.fbId = res.id;
                     user.picture = res.picture.data.url;
+                    display.games();
                 }
             );
         }

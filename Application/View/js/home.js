@@ -18,7 +18,7 @@ function Home() {
     function handleLogin() {
         var accessCode = login.checkForFbAccessCode();
         if (!accessCode) {
-            login.checkFbLogin();
+            display.loginButton();
             return;
         }
         login.getFbAccessToken(accessCode);

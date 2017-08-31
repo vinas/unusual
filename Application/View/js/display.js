@@ -4,9 +4,30 @@ function Display() {
         Yval = false,
         title = document.getElementById('title');
 
+    this.games = games;
+    this.loading = loading;
+    this.loginButton = loginButton;
     this.rotateTextShadow = rotateTextShadow;
     
     return this;
+
+    function loginButton() {
+        document.getElementById('games').style.display = 'none';
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('loginButton').style.display = 'block';
+    }
+
+    function games() {
+        document.getElementById('loginButton').style.display = 'none';
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('games').style.display = 'block';
+    }
+
+    function loading() {
+        document.getElementById('loginButton').style.display = 'none';
+        document.getElementById('games').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+    }
 
     function rotateTextShadow(el, max, color, blur, clockWise) {
         if (!isInitPosSet()) setTextShadowInitPos(max);
