@@ -8,22 +8,31 @@ function Display() {
     this.loading = loading;
     this.loginButton = loginButton;
     this.rotateTextShadow = rotateTextShadow;
+    this.loginError = loginError;
     
     return this;
 
+    function loginError() {
+        loginButton();
+        document.getElementById('loginError').style.display = 'block';
+    }
+
     function loginButton() {
+        document.getElementById('loginError').style.display = 'none';
         document.getElementById('games').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
         document.getElementById('loginButton').style.display = 'block';
     }
 
     function games() {
+        document.getElementById('loginError').style.display = 'none';
         document.getElementById('loginButton').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
         document.getElementById('games').style.display = 'block';
     }
 
     function loading() {
+        document.getElementById('loginError').style.display = 'none';
         document.getElementById('loginButton').style.display = 'none';
         document.getElementById('games').style.display = 'none';
         document.getElementById('loading').style.display = 'block';

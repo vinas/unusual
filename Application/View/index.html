@@ -7,16 +7,20 @@
         <!-- inject:css -->
         <!-- endinject -->
     </head>
-    <body>
+    <body border="0" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
         <div class="container" id="mainContainer">
-            <div class="title" id="title" onclick="goTo('/about.html');">unusual dev</div>
-            <div id="games">
-                <div class="gameLink" style="background-color: #575757;" onclick="goTo('/thechase/');"><img src="img/theChase.png" /></div>
-                <div class="gameLink" style="background-color: #FFF;" onclick="goTo('/asciiworld/');"><img src="img/AsciiWorld.png" /></div>
-                <div class="gameLink" style="background-color: #000;" onclick="goTo('/dalek/');"><img src="img/dalek_01.png" /></div>
+            <div class="userPicture" id="userPicture" onclick="login.logout()"></div>
+            <div class="contItems">
+                <div class="title element" id="title"><label onclick="goTo('/about.html');" class="pointer">unusual dev</label></div>
+                <div class="element" id="games">
+                    <div class="gameLink pointer centered element" style="background-color: #575757;" onclick="goTo('/thechase/');"><img src="img/theChase.png" /></div>
+                    <div class="gameLink pointer centered element" style="background-color: #FFF;" onclick="goTo('/asciiworld/');"><img src="img/AsciiWorld.png" /></div>
+                    <div class="gameLink pointer centered element" style="background-color: #000;" onclick="goTo('/dalek/');"><img src="img/dalek_01.png" /></div>
+                </div>
+                <div class="element" id="loginButton"><img class="pointer" onclick="events.checkLogin()" src="img/login.png" /></div>
+                <img class="centered element" src="img/loader.gif" id="loading" />
+                <div class="errorMessage element" id="loginError">an error occuried during login.<br/>please, try again.</div>
             </div>
-            <div id="loginButton" onclick="events.checkLogin()"><img src="img/login.png" /></div>
-            <img src="img/loader.gif" id="loading" />
         </div>
     </body>
     <!-- inject:js -->

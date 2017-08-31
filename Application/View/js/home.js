@@ -8,20 +8,11 @@ function Home() {
 
     function init() {
         display.rotateTextShadow(document.getElementById('title'), 4, '#000', 7, false);
-        handleLogin();
+        login.handleLogin();
     }
 
     function goTo(url) {
         window.location.href = url;
-    }
-
-    function handleLogin() {
-        var accessCode = login.checkForFbAccessCode();
-        if (!accessCode) {
-            display.loginButton();
-            return;
-        }
-        login.getFbAccessToken(accessCode);
     }
 
 }
