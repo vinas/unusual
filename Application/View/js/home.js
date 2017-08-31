@@ -1,45 +1,27 @@
-//(function() {
+function Home() {
 
-    var title = document.getElementById('title'),
-        Xval = 4,
-        Yval = 4;
-    
-    function rotateTextShadow(el, max, color, blur, clockWise) {
-        setTimeout(function() {
-            if (clockWise) {
-                if (Xval == max && Yval < max) {
-                    Yval++;
-                } else if (Yval == max && Xval > -max) {
-                    Xval--;
-                } else if (Xval == -max && Yval > -max) {
-                    Yval--;
-                } else if (Yval == -max && Xval < max) {
-                    Xval++;
-                }
-            } else {
-                if (Xval == max && Yval > -max) {
-                    Yval--;
-                } else if (Yval == -max && Xval > -max) {
-                    Xval--;
-                } else if (Xval == -max && Yval < max) {
-                    Yval++;
-                } else if (Yval == max && Xval < max) {
-                    Xval++;
-                }
-            }
-            printShadow();
-            rotateTextShadow(el, max, color, blur, clockWise);
+    this.goTo = goTo;
 
-            function printShadow() {
-                el.style.textShadow = Xval+'px '+Yval+'px '+blur+'px '+color;
-            }
-        }, 20);
+    init();
+
+    return this;
+
+    function init() {
+        display.rotateTextShadow(document.getElementById('title'), 4, '#000', 7, false);
+        handleLogin();
     }
 
     function goTo(url) {
         window.location.href = url;
     }
 
-    rotateTextShadow(title, 4, '#000', 7, false);
+    function handleLogin() {
+        var accessCode = login.checkForFbAccessCode();
+        if (!accessCode) {
+            login.checkFbLogin();
+            return;
+        }
+        login.getFbAccessToken(accessCode);
+    }
 
-//})();
+}
