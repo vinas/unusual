@@ -1,10 +1,12 @@
 // App Objects
 var setup,
     events,
-    movement,
     calc,
     display,
-    resizer;
+    resizer,
+    game,
+    ajax,
+    login;
 
 // Login
 var user = {};

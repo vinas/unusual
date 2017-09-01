@@ -42,7 +42,6 @@ function Display()
     this.molotovFeedback = molotovFeedback;
     this.showInGameElements = showInGameElements;
     this.hideGameValues = hideGameValues;
-    this.resetButton = resetButton;
     this.startPressedTimmer = startPressedTimmer;
     this.show2ndPoliceman = show2ndPoliceman;
     this.setNewBackground = setNewBackground;
@@ -58,7 +57,6 @@ function Display()
     this.bomb = bomb;
     this.hideBomb = hideBomb;
     this.loadingButton = loadingButton;
-    this.loginButton = loginButton;
     this.startButton = startButton;
     this.errorNotMobile = errorNotMobile;
     this.errorNotPortrait = errorNotPortrait;
@@ -126,20 +124,12 @@ function Display()
     }
 
     function loadingButton() {
-        document.getElementById('login').style.display = 'none';
         document.getElementById('resetGame').style.display = 'none';
         document.getElementById('loading').style.display = 'block';
     }
 
-    function loginButton() {
-        document.getElementById('resetGame').style.display = 'none';
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('login').style.display = 'block';
-    }
-
     function startButton() {
         document.getElementById('loading').style.display = 'none';
-        document.getElementById('login').style.display = 'none';
         document.getElementById('resetGame').style.display = 'block';
     }
 
@@ -419,33 +409,6 @@ function Display()
         Clock.style.display = 'none';
         Molotov.style.display = 'none';
         Bomb.style.display = 'none';
-    }
-
-    function resetButton() {
-        var accessCode;
-        if (accessCode = login.checkForFbAccessCode()) {
-            document.getElementById('login').style.display = 'none';
-            document.getElementById('loading').style.display = 'block';
-            login.getFbAccessToken(accessCode);
-            waitForUserInfo();
-            return;
-        } else {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('login').style.display = 'block';
-        }
-
-        function waitForUserInfo() {
-            setTimeout(function() {
-                console.log(user);
-                if (user.fbId) {
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('login').style.display = 'none';
-                    document.getElementById('resetGame').style.display = 'block';
-                    return;
-                }
-                waitForUserInfo();
-            }, 300);
-        }
     }
 
     function startPressedTimmer()

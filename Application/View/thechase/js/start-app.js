@@ -6,10 +6,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     display = Display();
     resizer = Resizer();
     game = Game();
+    ajax = Ajax();
     login = Login();
 
     if (setup.areSettingsOk()) {
-        game.init();
+        user.accessToken = login.getUrlParam('sessionToken');
+        if (user.accessToken) {
+            login.fetchUserInfo(user.accessToken)
+            game.init();
+            return;
+        }
+        window.location.href = '/';
     }
 
 });

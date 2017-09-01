@@ -12,7 +12,7 @@ function Home() {
     }
 
     function goTo(url) {
-        window.location.href = url;
+        window.location.href = url+'?sessionToken='+user.accessToken;
     }
 
 }

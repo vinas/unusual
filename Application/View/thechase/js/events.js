@@ -144,10 +144,6 @@ function Events()
             game.resetGame();
         });
 
-        document.getElementById('login').addEventListener('click', function() {
-            login.checkFbLogin('thechase', '725598060832930');
-        });
-
         document.getElementById('rankingButton').addEventListener('click', function() {
             document.getElementById('ranking').style.display = 'block';
             document.getElementById('ranking').innerHTML = 'loading...';

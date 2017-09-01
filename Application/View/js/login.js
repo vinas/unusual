@@ -1,9 +1,13 @@
 function Login() {
 
+    var url = new URL(window.location.href);
+
     this.checkFbLogin = checkFbLogin;
     this.getUserInfo = getUserInfo;
     this.handleLogin = handleLogin;
     this.logout = logout;
+    this.getUrlParam = getUrlParam;
+    this.fetchUserInfo = fetchUserInfo;
 
     return this;
 
@@ -15,11 +19,11 @@ function Login() {
 
     function handleLogin() {
         var accessToken = readCookie(),
-            accessCode = checkForFbAccessCode(),
-            error = checkForError() === 'true';
+            accessCode = getUrlParam('code'),
+            error = getUrlParam('error') === 'true';
 
         if (accessToken) {
-            fetchUserInfo(accessToken);
+            fetchUserInfo(accessToken, true, display.games);
             return;
         }
         if (accessCode) {
@@ -37,17 +41,8 @@ function Login() {
     function checkFbLogin() {
         window.location.href = 'https://www.facebook.com/v2.10/dialog/oauth?client_id=309691342772623&redirect_uri=http://unusualdev.com/';
     }
-
-    function checkForFbAccessCode() {
-        var url = new URL(window.location.href);
-        return url.searchParams.get('code');
-    }
-
-    function checkForError() {
-        var url = new URL(window.location.href);
-        return url.searchParams.get('error');
-    }
-        /**
+    
+    /**
      * @String game's folder
      * @String fb's client_id
      * @String fb's client secret
@@ -57,20 +52,22 @@ function Login() {
         if (code)
             ajax.get(
                 'https://graph.facebook.com/v2.10/oauth/access_token?client_id=309691342772623&redirect_uri=http://unusualdev.com/&client_secret=13e58f0492789ec1cfc6b44c87e9bd88&code='+code,
-                function(data) { fetchUserInfo(data.access_token); },
+                function(data) { fetchUserInfo(data.access_token, true, display.games); },
                 handleError
             );
     }
 
-    function fetchUserInfo(accessToken) {
+    function fetchUserInfo(accessToken, loadPicture, callback) {
         user.accessToken = accessToken;
         ajax.get(
             'https://graph.facebook.com/me?fields=first_name,name,email,gender,picture,birthday,age_range,hometown,locale,location&access_token='+user.accessToken,
             function(res) {
                 populateUser(res, storeCookie);
-                document.getElementById('userPicture').style.backgroundImage = "url('"+res.picture.data.url+"')";
-                document.getElementById('userPicture').style.display = 'block';
-                display.games();
+                if (loadPicture) {
+                    document.getElementById('userPicture').style.backgroundImage = "url('"+res.picture.data.url+"')";
+                    document.getElementById('userPicture').style.display = 'block';
+                }
+                if (callback) callback();
             },
             handleError
         );
@@ -104,6 +101,10 @@ function Login() {
     function readCookie() {
         var result = document.cookie.match(new RegExp('accessToken=([^;]+)'));
         return (result && result[1]) ? result[1] : false;
+    }
+
+    function getUrlParam(param) {
+        return url.searchParams.get(param);
     }
 
 }

@@ -44,35 +44,7 @@ function Setup()
             'img/bomb_v2.png'
         );
         preloadImages(ImgsToPreload);
-        setSounds(handleLogin);
-    }
-
-    function handleLogin() {
-        var accessCode = login.checkForFbAccessCode(),
-            loginAttempts = 0;
-        if (accessCode && !user.fbId) {
-            display.loadingButton();
-            login.getFbAccessToken('thechase', '725598060832930', 'e217cc077e95f1a727147cdc69b2ab03', accessCode);
-            waitForUserInfo();
-            return;
-        } else {
-            display.loginButton();
-        }
-
-        function waitForUserInfo() {
-            setTimeout(function() {
-                if (user.fbId) {
-                    display.startButton();
-                    return;
-                }
-                loginAttempts++;
-                if (loginAttempts < 32) {
-                    waitForUserInfo();
-                    return;
-                }
-                display.loginButton();
-            }, 250);
-        }
+        setSounds(display.startButton);
     }
 
     function setSounds(callback) {
