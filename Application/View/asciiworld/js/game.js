@@ -127,11 +127,12 @@ function Game() {
     }
 
     function saveGameScores() {
+        console.log('saveGameScores');
         user.lastScore = gameTime;
         user.lastScoreDateTime = calc.formattedDateTime();
         user.gameId = 2;
 
-        $.post('/api/Games/saveLastScore', user);
+        ajax.post('/api/Games/saveLastScore', user, function(res) {console.log(res)});
     }
 
 }

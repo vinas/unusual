@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (setup.areSettingsOk()) {
         user.accessToken = login.getUrlParam('sessionToken');
         if (user.accessToken) {
-            login.fetchUserInfo(user.accessToken)
+            login.fetchUserInfo(user.accessToken);
             game.init();
             return;
         }

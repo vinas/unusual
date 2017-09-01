@@ -7,8 +7,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     display = Display();
     level = Level();
     dialogs = (typeof Dialogs !== 'undefined') ? Dialogs() : false;
+    ajax = Ajax();
     game = Game();
 
-    //game.init();
+    if (setup.areSettingsOk()) {
+        user.accessToken = login.getUrlParam('sessionToken');
+        if (user.accessToken) {
+            login.fetchUserInfo(user.accessToken);
+            display.startButton();
+            return;
+        }
+        window.location.href = '/';
+    }
 
 });

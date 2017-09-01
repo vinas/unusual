@@ -50,61 +50,50 @@ function Display() {
     this.errorNotLandscape = errorNotLandscape;
     this.loadingButton = loadingButton;
     this.startButton = startButton;
-    this.loginButton = loginButton;
 
     init();
 
     return this;
 
     function init() {
-        if (setup.areSettingsOk()) {
-            charDiv = document.getElementById('charman');
-            charmanImg = document.getElementById('charmanImg');
-            bkgLayer = document.getElementById('gameBrackground');
+        charDiv = document.getElementById('charman');
+        charmanImg = document.getElementById('charmanImg');
+        bkgLayer = document.getElementById('gameBrackground');
 
-            charDiv.style.width = FLOORHORTOLERANCE+'%';
-            charDiv.style.height = FLOORVERTTOLERANCE+'%';
+        charDiv.style.width = FLOORHORTOLERANCE+'%';
+        charDiv.style.height = FLOORVERTTOLERANCE+'%';
 
-            bullet.style.width = '1.5%';
-            bullet.style.height = '1%';
+        bullet.style.width = '1.5%';
+        bullet.style.height = '1%';
 
-            ufoBullet.style.width = '2%';
-            ufoBullet.style.height = '1%';
+        ufoBullet.style.width = '2%';
+        ufoBullet.style.height = '1%';
 
-            ufo.style.width = '20%';
-            ufo.style.height = '20%';
+        ufo.style.width = '20%';
+        ufo.style.height = '20%';
 
-            pig.style.width = '8%';
-            pig.style.height = '10%';
+        pig.style.width = '8%';
+        pig.style.height = '10%';
 
-            alien.style.width = '4%';
-            alien.style.height = '14%';
+        alien.style.width = '4%';
+        alien.style.height = '14%';
 
-            bigBoss.style.width = '20%';
-            bigBoss.style.height = '35%';
-            bigBoss.health = 0;
+        bigBoss.style.width = '20%';
+        bigBoss.style.height = '35%';
+        bigBoss.health = 0;
 
-            boom.style.width = '10%';
-            boom.style.height = '20%';
-        }
+        boom.style.width = '10%';
+        boom.style.height = '20%';
     }
 
     function loadingButton() {
         document.getElementById('startGameImg').style.display = 'none';
-        document.getElementById('loginButtonImg').style.display = 'none';
         document.getElementById('loadingImg').style.display = 'block';
     }
 
     function startButton() {
         document.getElementById('loadingImg').style.display = 'none';
-        document.getElementById('loginButtonImg').style.display = 'none';
         document.getElementById('startGameImg').style.display = 'block';
-    }
-
-    function loginButton() {
-        document.getElementById('loadingImg').style.display = 'none';
-        document.getElementById('startButton').style.display = 'none';
-        document.getElementById('loginButtonImg').style.display = 'block';
     }
 
     function errorNotMobile() {

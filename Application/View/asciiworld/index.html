@@ -5,7 +5,8 @@
         <title>Ascii World Adventure</title>
         <meta content='width=100%, user-scalable=no, initial-scale=1.0' name='viewport' />
 
-        <script type="text/javascript" src="/js/libs/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/js/login.js"></script>
+        <script type="text/javascript" src="/js/libs/local/ajax.js"></script>
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
@@ -47,7 +48,6 @@
         </div>
         <div id="startGame">
             <img src="img/game-start.gif" id="startGameImg" class="startScreenButton" onclick="game.init()" />
-            <img src="img/login.png" id="loginButtonImg" class="startScreenButton" onclick="events.fbLogin()" />
             <img src="img/loader.gif" id="loadingImg" class="startScreenButton" style="display: block;" />
         </div>
         <div id="errorScreen"></div>

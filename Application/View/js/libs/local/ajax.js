@@ -18,7 +18,7 @@ function Ajax() {
 
     function get(uri, success, error) {
         xhttp.onreadystatechange = function() {
-            handleResponse(this.readyState, this.status, this.responseText, success, error);
+            handleResponse(this, success, error);
         }
         xhttp.open("GET", uri, true);
         xhttp.send();
@@ -26,12 +26,11 @@ function Ajax() {
 
     function post(uri, params, success, error) {
         xhttp.onreadystatechange = function() {
-            handleResponse(this.readyState, this.status, this.responseText, success, error);
+            handleResponse(this, success, error);
         }
         xhttp.open('POST', uri, true);
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        http.setRequestHeader("Connection", "close");
-        xhttp.send(populateFormData(params));
+        xhttp.setRequestHeader("Content-type", "appplication/json;charset=UTF-8");
+        xhttp.send(params);
     }
 
     function populateFormData(params) {
@@ -44,21 +43,21 @@ function Ajax() {
         return data;
     }
 
-    function handleResponse(readyState, status, responseText, success, error) {
-        if (readyState == 4) {
-            if (status == 200) {
+    function handleResponse(res, success, error) {
+        if (res.readyState == 4) {
+            if (res.status == 200) {
                 if (success) {
-                    success(JSON.parse(responseText))
+                    success(JSON.parse(res.responseText))
                 } else {
-                    console.log(responseText);
+                    console.log(res.responseText);
                 }
                 return;
             } else {
                 if (error) {
-                    error(JSON.parse(responseText));
+                    error(JSON.parse(res.responseText));
                     return;
                 }
-                console.log(responseText);
+                console.log(res.responseText);
             }
         }
     }
