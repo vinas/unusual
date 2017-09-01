@@ -41,7 +41,7 @@ class RankingFactory extends \SaSeed\Database\DAO {
                     'userId',
                     'gs'
                 );
-            $this->queryBuilder->rawWhere('gs.gameId = 1 GROUP BY gs.userId ORDER BY score DESC LIMIT 0, 10');
+            $this->queryBuilder->rawWhere('gs.gameId = 1 GROUP BY gs.userId ORDER BY score * 1 DESC LIMIT 0, 10');
             $res = $this->db->getRows($this->queryBuilder->getQuery());
             for ($i = 0; $i < count($res); $i++) {
                 $res[$i] = Mapper::populate(
