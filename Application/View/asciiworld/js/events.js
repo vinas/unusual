@@ -9,8 +9,13 @@ function Events()
     this.crossRight = crossRight;
     this.crossLeft = crossLeft;
     this.triggers = triggers;
+    this.goToNextLevel = goToNextLevel;
 
     return this;
+
+    function goToNextLevel() {
+        window.location.href = '/asciiworld/level'+display.addZero(level.current+1)+'.html?sessionToken='+user.accessToken;
+    }
 
     function triggers() {
         var trigger = levelTriggers[currMap][Math.floor(leftPos)+FLOORHORTOLERANCE];
@@ -50,6 +55,8 @@ function Events()
         setup.resetGame();
         gameOn = true;
         document.getElementById('gameOver').style.display = 'none';
+        document.getElementById('levelScore').style.display = 'none';
+        document.getElementById('gameElements').style.display = 'block';
     }
 
     function tapAttack() {

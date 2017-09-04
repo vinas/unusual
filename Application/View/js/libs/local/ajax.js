@@ -30,7 +30,7 @@ function Ajax() {
         }
         xhttp.open('POST', uri, true);
         xhttp.setRequestHeader("Content-type", "appplication/json;charset=UTF-8");
-        xhttp.send(params);
+        xhttp.send(JSON.stringify(params));
     }
 
     function populateFormData(params) {
@@ -46,18 +46,9 @@ function Ajax() {
     function handleResponse(res, success, error) {
         if (res.readyState == 4) {
             if (res.status == 200) {
-                if (success) {
-                    success(JSON.parse(res.responseText))
-                } else {
-                    console.log(res.responseText);
-                }
+                if (success) success(JSON.parse(res.responseText));
                 return;
-            } else {
-                if (error) {
-                    error(JSON.parse(res.responseText));
-                    return;
-                }
-                console.log(res.responseText);
+                if (error) error(JSON.parse(res.responseText));
             }
         }
     }

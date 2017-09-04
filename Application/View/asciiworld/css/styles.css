@@ -236,3 +236,17 @@ html, body {
 .moveLeft {
     background-image: url('../img/controls/left01.png');
 }
+
+.ranking {
+    text-align: center;
+}
+
+.rankingTitle {
+    font-size: x-large;
+    padding-top: 3%;
+    padding-bottom: 2.5%;
+}
+
+.rankingItem {
+    padding-top: 1%;
+}

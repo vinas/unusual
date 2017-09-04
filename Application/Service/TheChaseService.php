@@ -22,11 +22,11 @@ use Application\Model\RankingEntryModel;
 class TheChaseService
 {
 
-    public function getRanking()
+    public function getRanking($gameId)
     {
         try {
             $factory = new RankingFactory();
-            return $factory->getRanking();
+            return $factory->getRanking($gameId);
         } catch (Exception $e) {
             Exceptions::throwing(__CLASS__, __FUNCTION__, $e);
         }

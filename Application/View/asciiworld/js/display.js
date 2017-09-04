@@ -734,6 +734,17 @@ function Display() {
         document.getElementById('lastStage').innerHTML = currMap+1;
         document.getElementById('gameElements').style.display = 'none';
         document.getElementById('levelScore').style.display = 'block';
+        ajax.get('/api/Games/getRanking/'+calc.getGameId(), ranking);
+    }
+
+    function ranking(rankingItems) {
+        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 01/09/2017</label></div>';
+        var order;
+        for (i = 0; i < rankingItems.length; i++) {
+            order = i + 1;
+            output += '<div class="rankingItem">' + order + setOrdinal(order) + ' - ' + rankingItems[i].name + ' - ' + rankingItems[i].score + '</div>';
+        }
+        document.getElementById('ranking').innerHTML = output;
     }
 
     async function explosion(left, top) {
@@ -783,5 +794,12 @@ function Display() {
                 el.style.textShadow = Xval+'px '+Yval+'px '+blur+'px '+color;
             }
         }, 20);
+    }
+
+    function setOrdinal(order) {
+        if (order > 3) return 'th';
+        if (order == 1) return 'st';
+        if (order == 2) return 'nd';
+        if (order == 3) return 'rd';
     }
 }

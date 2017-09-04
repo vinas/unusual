@@ -15,8 +15,13 @@ function Calculator() {
     this.isVisible = isVisible;
     this.isOverHole = isOverHole;
     this.formattedDateTime = formattedDateTime;
+    this.getGameId = getGameId;
 
     return this;
+
+    function getGameId() {
+        return level.current + 1;
+    }
 
     function formattedDateTime() {
         var currentdate = new Date(); 
@@ -32,7 +37,7 @@ function Calculator() {
         var finalTime = +new Date();
         gameTime = millisToMinutesAndSeconds(finalTime - time);
         timer = 0;
-        callback();
+        if (callback) callback();
     }
 
     function touchedEnemy() {

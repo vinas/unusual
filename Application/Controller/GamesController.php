@@ -44,10 +44,8 @@ class GamesController
 	{
 		$res = false;
 		try {
-			if ($this->params[0] == 1) {
-				$service = new TheChaseService();
-			}
-			$res = $service->getRanking();
+			$service = new TheChaseService();
+			$res = $service->getRanking($this->params[0]);
 		} catch (Exception $e) {
 			Exceptions::throwing(__CLASS__, __FUNCTION__, $e);
 			$res = $e->getMessage();

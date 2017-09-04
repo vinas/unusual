@@ -5,6 +5,8 @@
         <title>Ascii World Adventure</title>
         <meta content='width=100%, user-scalable=no, initial-scale=1.0' name='viewport' />
 
+        <script type="text/javascript" src="/js/login.js"></script>
+        <script type="text/javascript" src="/js/libs/local/ajax.js"></script>
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
@@ -44,7 +46,10 @@
                 </div>
             </div>
         </div>
-        <div id="startGame" onclick="game.init()"><img src="img/game-start.gif" id="startGameImg" /></div>
+        <div id="startGame">
+            <img src="img/game-start.gif" id="startGameImg" class="startScreenButton" onclick="game.init()" />
+            <img src="img/loader.gif" id="loadingImg" class="startScreenButton" style="display: block;" />
+        </div>
         <div id="errorScreen"></div>
         <div id="gameOver" onclick="events.reset()">
             <!--label>Estágio alcançado: </label>
@@ -52,16 +57,26 @@
             <label>Tempo Total: </label>
             <label id="gameTime"></label-->
         </div>
-        <div id="levelScore" onclick="game.nextLevel()">
-            <label>Estágio alcançado: </label>
-            <label id="lastStage"></label><br/>
-            <label>Tempo Total: </label>
-            <label id="gameTime"></label>
-            <img src="img/game-start.gif" id="startGameImg" />
+        <!--div id="levelScore" style="padding: 2%;" onclick="game.nextLevel()"-->
+        <div id="levelScore" style="padding: 2%;">
+            <div class="forceLeft" style="width: 35%;">
+                <div>
+                    <label>Estágio alcançado: </label>
+                    <label id="lastStage"></label><br/>
+                    <label>Tempo Total: </label>
+                    <label id="gameTime"></label>
+                </div>
+                <br/><br/>
+                <div>
+                    <a href="#" onclick="events.goToNextLevel()">go to next level</a>
+                </div>
+            </div>
+            <div class="forceRight ranking" id="ranking" style="width: 65%;">
+                loading ranking...
+            </div>
         </div>
     </body>
 
-    <script type="text/javascript" src="/js/login.js"></script>
     <!-- game js files begin -->
     <script type="text/javascript" src="js/globals.js"></script>
     <script type="text/javascript" src="js/level03.js"></script>

@@ -103,7 +103,7 @@ function Dialogs() {
     }
 
     function dialog021023() {
-        dialogBalloon(pig, "They made me radioactive as well...", endDialog);
+        dialogBalloon(pig, "They made me radioactive or something...", endDialog);
     }
 
     function endDialog() {

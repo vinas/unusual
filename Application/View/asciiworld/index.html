@@ -57,12 +57,23 @@
             <label>Tempo Total: </label>
             <label id="gameTime"></label-->
         </div>
-        <div id="levelScore" onclick="game.nextLevel()">
-            <label>Estágio alcançado: </label>
-            <label id="lastStage"></label><br/>
-            <label>Tempo Total: </label>
-            <label id="gameTime"></label>
-            <img src="img/game-start.gif" id="startGameImg" />
+        <!--div id="levelScore" style="padding: 2%;" onclick="game.nextLevel()"-->
+        <div id="levelScore" style="padding: 2%;">
+            <div class="forceLeft" style="width: 35%;">
+                <div>
+                    <label>Estágio alcançado: </label>
+                    <label id="lastStage"></label><br/>
+                    <label>Tempo Total: </label>
+                    <label id="gameTime"></label>
+                </div>
+                <br/><br/>
+                <div>
+                    <a href="#" onclick="events.goToNextLevel()">go to next level</a>
+                </div>
+            </div>
+            <div class="forceRight ranking" id="ranking" style="width: 65%;">
+                loading ranking...
+            </div>
         </div>
     </body>
 
