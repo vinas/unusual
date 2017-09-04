@@ -101,6 +101,7 @@ if (areSettingsOk()) {
     $(document).on("ready", function() {
 
         $.setupGame = function() {
+            tardisVis = true;
             MAPHORSIZE = $("#fundo").css("width").replace(new RegExp("px", 'g'), "");
             MAPVERSIZE = $("#fundo").css("height").replace(new RegExp("px", 'g'), "");
             posTardis = new Array(
@@ -210,7 +211,6 @@ if (areSettingsOk()) {
         $(".tapMove").on("touchstart", function() {
             posY = event.touches[0].pageY;
             posDalek = posY - 28;
-            console.log(posDalek);
             $("#dalek").animate(
                 {top: posDalek},
                 100
