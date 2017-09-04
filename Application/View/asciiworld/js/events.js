@@ -10,11 +10,17 @@ function Events()
     this.crossLeft = crossLeft;
     this.triggers = triggers;
     this.goToNextLevel = goToNextLevel;
+    this.go = go;
 
     return this;
 
+    function go(uri) {
+        window.location.href = uri+'?sessionToken='+user.accessToken;
+        return false;
+    }
+
     function goToNextLevel() {
-        window.location.href = '/asciiworld/level'+display.addZero(level.current+1)+'.html?sessionToken='+user.accessToken;
+        go('/asciiworld/level'+display.addZero(level.current+1)+'.html');
     }
 
     function triggers() {

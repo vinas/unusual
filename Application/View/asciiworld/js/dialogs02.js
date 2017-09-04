@@ -110,6 +110,7 @@ function Dialogs() {
         hideBalloon()
         display.unfreezeChar();
         setTimeout(function() {
+            display.mirrorObj(pig, -1);
             display.moveElmRight(pig, 100, basicMovRate *.3, function() { pig.style.display = 'none'; });
         }, 500);
         

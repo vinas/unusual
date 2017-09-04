@@ -11,7 +11,7 @@ function Level() {
     function loadMapArr() {
         return [
             // #1
-            [
+            /*[
                 ['floor_fragile.png', 'double', 0, 'solid'],
                 ['hole01.png', 'double', 0, 'hole'],
                 ['hole01.png', 'double', 0, 'hole'],
@@ -103,7 +103,7 @@ function Level() {
                 ['hole01.png', 'double', 0, 'hole'],
                 ['floor02.png', 'single', 0, 'solid']
 
-            ],
+            ],*/
             // #9
             [
                 ['floor_fragile.png', 'double', 0, 'solid'],
@@ -127,17 +127,6 @@ function Level() {
                 ['floor01.png', 'double', 0, 'solid'],
                 ['floor01.png', 'double', 0, 'solid'],
                 ['floor01.png', 'double', 0, 'solid']
-            ],
-            // #11
-            [
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid'],
-                ['floor01.png', 'double', 0, 'solid']
             ]
         ];
     }
@@ -145,7 +134,7 @@ function Level() {
     function loadLevelTriggers() {
         levelTriggers = [
             // #1
-            {
+            /*{
                 37: {
                     onlyOnce: true,
                     triggered: false,
@@ -348,7 +337,7 @@ function Level() {
                         }
                     ]
                 }
-            },
+            },*/
             // #9
             {
                 5: {
@@ -414,11 +403,8 @@ function Level() {
                         dialogs.dialog021007
                     ],
                     params: []
-                }
-            },
-            // #11
-            {
-                2: {
+                },
+                100: {
                     onlyOnce: true,
                     triggered: false,
                     actions: [

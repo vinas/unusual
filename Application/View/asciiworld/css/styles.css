@@ -250,3 +250,7 @@ html, body {
 .rankingItem {
     padding-top: 1%;
 }
+
+.obs {
+    font-size: small;
+}
