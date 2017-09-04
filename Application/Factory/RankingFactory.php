@@ -32,7 +32,7 @@ class RankingFactory extends \SaSeed\Database\DAO {
     public function getRanking($gameId)
     {
         try {
-            $this->queryBuilder->select(['gs.id AS id', 'u.name AS name', 'MAX(gs.score) AS score', 'gs.dateTime AS dateTime']);
+            $this->queryBuilder->select(['gs.id AS id', 'u.name AS name', 'MAX(gs.score * 1) AS score', 'gs.dateTime AS dateTime']);
             $this->queryBuilder->from('game_scores', 'gs');
             $this->queryBuilder->join(
                     ['users', 'u'],
@@ -42,6 +42,32 @@ class RankingFactory extends \SaSeed\Database\DAO {
                     'gs'
                 );
             $this->queryBuilder->rawWhere('gs.gameId = '.$gameId.' GROUP BY gs.userId ORDER BY score * 1 DESC LIMIT 0, 10');
+            $res = $this->db->getRows($this->queryBuilder->getQuery());
+            for ($i = 0; $i < count($res); $i++) {
+                $res[$i] = Mapper::populate(
+                        new RankingListItemModel(),
+                        $res[$i]
+                    );
+            }
+            return $res;
+        } catch (Exception $e) {
+            Exceptions::throwing(__CLASS__, __FUNCTION__, $e);
+        }
+    }
+
+    public function getRankingAsc($gameId)
+    {
+        try {
+            $this->queryBuilder->select(['gs.id AS id', 'u.name AS name', 'MIN(gs.score * 1) AS score', 'gs.dateTime AS dateTime']);
+            $this->queryBuilder->from('game_scores', 'gs');
+            $this->queryBuilder->join(
+                    ['users', 'u'],
+                    'id',
+                    '=',
+                    'userId',
+                    'gs'
+                );
+            $this->queryBuilder->rawWhere('gs.gameId = '.$gameId.' GROUP BY gs.userId ORDER BY score ASC LIMIT 0, 10');
             $res = $this->db->getRows($this->queryBuilder->getQuery());
             for ($i = 0; $i < count($res); $i++) {
                 $res[$i] = Mapper::populate(

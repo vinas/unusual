@@ -26,7 +26,15 @@ class TheChaseService
     {
         try {
             $factory = new RankingFactory();
-            return $factory->getRanking($gameId);
+            switch ($gameId) {
+                case 2:
+                case 3:
+                case 4:
+                    return $factory->getRankingAsc($gameId);
+                    break;
+                default:
+                    return $factory->getRanking($gameId);
+            }
         } catch (Exception $e) {
             Exceptions::throwing(__CLASS__, __FUNCTION__, $e);
         }
