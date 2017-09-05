@@ -247,23 +247,24 @@ function init() {
         function saveGameScores() {
             user.lastScore = score;
             user.lastScoreDateTime = formattedDateTime();
-            user.gameId = 4;
+            user.gameId = 5;
 
             ajax.post('/api/Games/saveLastScore', user, function() {
-                 document.getElementById('ranking').innerHTML = 'loadin ranking...';
+                 document.getElementById('ranking').innerHTML = 'loading ranking...';
                  document.getElementById('ranking').style.display = 'block';
-                 ajax.get('/api/Games/getRanking/4', updateRanking);
+                 ajax.get('/api/Games/getRanking/5', updateRanking);
              });
 
         }
 
         function updateRanking(content) {
-            var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 01/09/2017</label></div>';
+            var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 16/09/2017</label></div>';
             var order;
             for (i = 0; i < content.length; i++) {
                 order = i + 1;
                 output += '<div class="rankingItem">' + order + setOrdinal(order) + ' - ' + content[i].name + ' - ' + content[i].score + '</div>';
             }
+            output += '<br/><label class="startTap" onclick="$.resetGame();">tap to start again</label>';
             document.getElementById('ranking').innerHTML = output;
         }
 

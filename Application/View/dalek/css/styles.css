@@ -91,3 +91,30 @@ body {
 .hidable {
 	display: none;
 }
+
+#startGame {
+	top: 42%;
+	position: relative;
+}
+
+.rankingTitle {
+	font-size: x-large;
+	color: #FFD61F;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.rankingItem {
+	padding-top: 1%;
+	font-size: small;
+}
+
+.obs {
+	font-size: small;
+}
+
+.startTap {
+	color: #FFD61F;
+	padding: 1.5%;
+	background-color: #115;
+}

@@ -99,7 +99,7 @@ function Display()
 
     function ranking(content) {
         var rankingItems = JSON.parse(content);
-        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 01/09/2017</label></div>';
+        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 16/09/2017</label></div>';
         var order;
         for (i = 0; i < rankingItems.length; i++) {
             order = i + 1;
