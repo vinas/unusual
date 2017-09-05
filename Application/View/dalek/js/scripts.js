@@ -1,3 +1,8 @@
+var ajax = Ajax(),
+    login = Login(),
+    user = {};
+
+
 function areSettingsOk() {
     var Xval, Yval;
     
@@ -63,7 +68,16 @@ function isMobile() {
     return check;
 };
 
-if (areSettingsOk()) {
+user.accessToken = login.getUrlParam('sessionToken');
+if (user.accessToken) {
+    login.fetchUserInfo(user.accessToken);
+    init();
+} else {
+    window.location.href = '/';
+}
+
+
+function init() {
 
     var tecla,
     keyBump,
@@ -102,17 +116,19 @@ if (areSettingsOk()) {
 
         $.setupGame = function() {
             tardisVis = true;
-            MAPHORSIZE = $("#fundo").css("width").replace(new RegExp("px", 'g'), "");
-            MAPVERSIZE = $("#fundo").css("height").replace(new RegExp("px", 'g'), "");
+            MAPHORSIZE = $("#content").css("width").replace(new RegExp("px", 'g'), "");
+            MAPVERSIZE = $("#content").css("height").replace(new RegExp("px", 'g'), "");
+        }
+
+        $.resetGame = function() {
             posTardis = new Array(
                     (MAPHORSIZE - 45),
                     Math.floor(Math.random() * (MAPVERSIZE - TARDISHEIGHT))
                 );
-        }
-
-        $.resetGame = function() {
+            tardisVis = true;
+            setClassProp('hidable', 'display', 'none');
+            document.getElementById('game').style.display = 'block';
             setTimeout(function() {
-                    $.setupGame();
                     $("#dalek").css("top", 0);
                     $("#dalek").css("left", 10);
                     $("#tardis").css("top", posTardis[1]);
@@ -136,12 +152,11 @@ if (areSettingsOk()) {
                             {left: posTardis[0]},
                             30
                         );
-
-                        //$("#tardis").css("left", posTardis[0]);
                     } else {
                         $("#tiro").hide();
                         tardisVis = false;
                         clearInterval(tardisInterval);
+                        endGame();
                     }
                 }, 50);
             }
@@ -222,9 +237,71 @@ if (areSettingsOk()) {
             $.shoot();
         });
 
+        /*-*-*-*-* NEW *-*-*-*-*/
 
-        /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
-        $.resetGame()
+        function endGame() {
+            saveGameScores();
+            setClassProp('hidable', 'display', 'none');
+        }
+
+        function saveGameScores() {
+            user.lastScore = score;
+            user.lastScoreDateTime = formattedDateTime();
+            user.gameId = 4;
+
+            ajax.post('/api/Games/saveLastScore', user, function() {
+                 document.getElementById('ranking').innerHTML = 'loadin ranking...';
+                 document.getElementById('ranking').style.display = 'block';
+                 ajax.get('/api/Games/getRanking/4', updateRanking);
+             });
+
+        }
+
+        function updateRanking(content) {
+            var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 01/09/2017</label></div>';
+            var order;
+            for (i = 0; i < content.length; i++) {
+                order = i + 1;
+                output += '<div class="rankingItem">' + order + setOrdinal(order) + ' - ' + content[i].name + ' - ' + content[i].score + '</div>';
+            }
+            document.getElementById('ranking').innerHTML = output;
+        }
+
+        function setOrdinal(order) {
+            if (order > 3) return 'th';
+            if (order == 1) return 'st';
+            if (order == 2) return 'nd';
+            if (order == 3) return 'rd';
+        }
+
+        function formattedDateTime() {
+            var currentdate = new Date(); 
+            return addZero(currentdate.getDate()) + "/"
+                + addZero(currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + addZero(currentdate.getHours()) + ":"  
+                + addZero(currentdate.getMinutes()) + ":" 
+                + addZero(currentdate.getSeconds());
+        }
+
+        function addZero(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function setClassProp(className, prop, value) {
+            var els = document.getElementsByClassName(className),
+                i;
+            for (i = 0; i < els.length; i++) {
+                els[i].style[prop] = value;
+            }
+        }
+
+       /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+        document.getElementById('startGame').style.display = 'block';
+        $.setupGame();
 
     });
 }
