@@ -58,7 +58,7 @@ class RankingFactory extends \SaSeed\Database\DAO {
     public function getRankingAsc($gameId)
     {
         try {
-            $this->queryBuilder->select(['gs.id AS id', 'u.name AS name', 'MIN(gs.score * 1) AS score', 'gs.dateTime AS dateTime']);
+            $this->queryBuilder->select(['gs.id AS id', 'u.name AS name', 'MIN(gs.score) AS score', 'gs.dateTime AS dateTime']);
             $this->queryBuilder->from('game_scores', 'gs');
             $this->queryBuilder->join(
                     ['users', 'u'],
