@@ -259,7 +259,7 @@ function init() {
                 order = i + 1;
                 output += '<div class="rankingItem">' + order + setOrdinal(order) + ' - ' + content[i].name + ' - ' + content[i].score + '</div>';
             }
-            output += '<br/><label class="startTap" onclick="$.resetGame();">tap to start again</label>';
+            output += '<br/><label class="startTap" onclick="$.resetGame();">TARDIS shot '+score+' times! - tap to start again</label>';
             document.getElementById('ranking').innerHTML = output;
         }
 
