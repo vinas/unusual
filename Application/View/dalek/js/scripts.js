@@ -122,6 +122,9 @@ function init() {
         }
 
         $.resetGame = function() {
+            score = 0;
+            $("#score").html('0');
+            tardisSpeed = 5;
             posTardis = new Array(
                     (MAPHORSIZE - 45),
                     Math.floor(Math.random() * (MAPVERSIZE - TARDISHEIGHT))
