@@ -409,7 +409,7 @@ function Display() {
 
     }
     function updateTime() {
-        document.getElementById('time').innerHTML = timer + ' segs.';
+        document.getElementById('time').innerHTML = timer + ' secs.';
     }
 
     function abduction() {
@@ -734,7 +734,7 @@ function Display() {
         document.getElementById('lastStage').innerHTML = currMap+1;
         document.getElementById('gameElements').style.display = 'none';
         document.getElementById('levelScore').style.display = 'block';
-        ajax.get('/api/Games/getRanking/'+calc.getGameId(), ranking);
+        unusual.getRanking(calc.getGameId(), ranking);
     }
 
     function ranking(rankingItems) {

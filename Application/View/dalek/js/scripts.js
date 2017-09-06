@@ -1,5 +1,6 @@
 var ajax = Ajax(),
     login = Login(),
+    unusual = UnusualDevServices(),
     user = {};
 
 
@@ -240,21 +241,12 @@ function init() {
         /*-*-*-*-* NEW *-*-*-*-*/
 
         function endGame() {
-            saveGameScores();
+            unusual.saveGameScore(5, score, function() {
+                document.getElementById('ranking').innerHTML = 'loading ranking...';
+                document.getElementById('ranking').style.display = 'block';
+                unusual.getRanking(5, updateRanking);
+            });
             setClassProp('hidable', 'display', 'none');
-        }
-
-        function saveGameScores() {
-            user.lastScore = score;
-            user.lastScoreDateTime = formattedDateTime();
-            user.gameId = 5;
-
-            ajax.post('/api/Games/saveLastScore', user, function() {
-                 document.getElementById('ranking').innerHTML = 'loading ranking...';
-                 document.getElementById('ranking').style.display = 'block';
-                 ajax.get('/api/Games/getRanking/5', updateRanking);
-             });
-
         }
 
         function updateRanking(content) {
@@ -273,16 +265,6 @@ function init() {
             if (order == 1) return 'st';
             if (order == 2) return 'nd';
             if (order == 3) return 'rd';
-        }
-
-        function formattedDateTime() {
-            var currentdate = new Date(); 
-            return addZero(currentdate.getDate()) + "/"
-                + addZero(currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + addZero(currentdate.getHours()) + ":"  
-                + addZero(currentdate.getMinutes()) + ":" 
-                + addZero(currentdate.getSeconds());
         }
 
         function addZero(i) {

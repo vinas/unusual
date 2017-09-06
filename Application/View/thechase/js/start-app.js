@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     setup = Setup();
     events = Events();
+    unusual = UnusualDevServices();
     calc = Calculator();
     display = Display();
     resizer = Resizer();

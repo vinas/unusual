@@ -101,11 +101,11 @@ function Game() {
                 display.showResetButton();
                 break;
             case 'abducted':
-                calc.setGameEndingTime(saveGameScores);
+                calc.setGameEndingTime(saveScore);
                 display.abduction();
                 break;
             case 'nextLevel':
-                calc.setGameEndingTime(saveGameScores);
+                calc.setGameEndingTime(saveScore);
                 setTimeout(function() {
                     display.levelScore()
                 }, 1000);
@@ -129,12 +129,8 @@ function Game() {
         }
     }
 
-    function saveGameScores() {
-        user.lastScore = gameTime;
-        user.lastScoreDateTime = calc.formattedDateTime();
-        user.gameId = calc.getGameId();
-
-        ajax.post('/api/Games/saveLastScore', user);
+    function saveScore() {
+        unusual.saveGameScore(calc.getGameId(), gameTime);
     }
 
 }

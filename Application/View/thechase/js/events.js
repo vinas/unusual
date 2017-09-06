@@ -147,10 +147,7 @@ function Events()
         document.getElementById('rankingButton').addEventListener('click', function() {
             document.getElementById('ranking').style.display = 'block';
             document.getElementById('ranking').innerHTML = 'loading...';
-            $.get(
-                    '/api/Games/getRanking/1',
-                    display.ranking
-                );
+            unusual.getRanking(1, display.ranking);
         });
 
         $(document).on('swipeleft', function() {

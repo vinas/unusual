@@ -14,23 +14,12 @@ function Calculator() {
     this.areTouching = areTouching;
     this.isVisible = isVisible;
     this.isOverHole = isOverHole;
-    this.formattedDateTime = formattedDateTime;
     this.getGameId = getGameId;
 
     return this;
 
     function getGameId() {
         return level.current + 1;
-    }
-
-    function formattedDateTime() {
-        var currentdate = new Date(); 
-        return addZero(currentdate.getDate()) + "/"
-            + addZero(currentdate.getMonth()+1)  + "/" 
-            + currentdate.getFullYear() + " @ "  
-            + addZero(currentdate.getHours()) + ":"  
-            + addZero(currentdate.getMinutes()) + ":" 
-            + addZero(currentdate.getSeconds());
     }
 
     function setGameEndingTime(callback) {
@@ -230,6 +219,13 @@ function Calculator() {
     function millisToMinutesAndSeconds(millis) {
         var date = new Date(millis);
         return date.getUTCMinutes() + ':' + addZero(date.getUTCSeconds(), 2) + ':' + date.getUTCMilliseconds();
+    }
+
+    function addZero(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
     }
 
 }

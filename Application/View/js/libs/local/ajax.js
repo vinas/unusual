@@ -4,7 +4,7 @@
 * @description This class' purpose is to handle ajax requets.
 * @author Vinas de Andrade <vinas.andrade@gmail.com>
 * @since 2017/08/31
-* @version 1.17.0831
+* @version 1.17.0906
 * @license SaSeed\license.txt
 */
 function Ajax() {

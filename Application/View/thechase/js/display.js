@@ -97,10 +97,9 @@ function Display()
         }, 20);
     }
 
-    function ranking(content) {
-        var rankingItems = JSON.parse(content);
-        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 16/09/2017</label></div>';
-        var order;
+    function ranking(rankingItems) {
+        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 16/09/2017</label></div>',
+            order;
         for (i = 0; i < rankingItems.length; i++) {
             order = i + 1;
             output += '<div class="rankingItem">' + order + setOrdinal(order) + ' - ' + rankingItems[i].name + ' - ' + rankingItems[i].score + '</div>';

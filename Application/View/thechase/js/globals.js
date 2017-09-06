@@ -6,7 +6,8 @@ var setup,
     resizer,
     game,
     ajax,
-    login;
+    login,
+    unusual;
 
 // Login
 var user = {};

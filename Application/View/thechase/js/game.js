@@ -21,7 +21,7 @@ function Game()
     function endGame(reason) {
         gameOn = false;
         musicTheme.pause();
-        saveGameScores();
+        unusual.saveGameScore(1, points);
         endGameSound.currentTime = 0;
         endGameSound.play();
         display[reason]();
@@ -124,14 +124,6 @@ function Game()
             display.setNewBackground();
             events.changePoliceMoveRate();
         }
-    }
-
-    function saveGameScores() {
-        user.lastScore = points;
-        user.lastScoreDateTime = calc.formattedDateTime();
-        user.gameId = 1;
-
-        $.post('/api/Games/saveLastScore', user);
     }
 
 }
