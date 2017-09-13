@@ -8,22 +8,23 @@
     src: url('/font/8bitoperator.ttf');
 }
 
-
-body {
-	font-family: BitParty;
-	overflow: hidden;
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: hidden;
+	font-family: BitParty;
 	color: #FFF;
+	background-color: #000;
 }
 
 #content {
     width: 100%;
     height: 100%;
     text-align: center;
-    background-color: #000;
 }
-''
+
 #errorLink {
 	color: #CBF;
 }
