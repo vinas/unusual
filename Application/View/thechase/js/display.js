@@ -98,7 +98,7 @@ function Display()
     }
 
     function ranking(rankingItems) {
-        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 16/09/2017</label></div>',
+        var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 31/10/2017</label></div>',
             order;
         for (i = 0; i < rankingItems.length; i++) {
             order = i + 1;

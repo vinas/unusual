@@ -253,7 +253,7 @@ function init() {
         }
 
         function updateRanking(content) {
-            var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 16/09/2017</label></div>';
+            var output = '<div class="rankingTitle">Ranking <label class="obs">&nbsp;until 31/10/2017</label></div>';
             var order;
             for (i = 0; i < content.length; i++) {
                 order = i + 1;

@@ -16,15 +16,19 @@ var dev = 'build/',
     public_dalek = '../../public_html/asciiworld/',
     public_thechase = '../../public_html/asciiworld/';
 
-gulp.task('default', function() {
-    console.log(color('\n\n  ** ERROR **', 'RED'));
-    console.log(color(' -> You need to select a task.', 'RED'));
+gulp.task('options', function() {
+    console.log(color('\n\n -> You need to select a task.', 'RED'));
     console.log(color('\n    Type: gulp <task name>', 'YELLOW'));
     console.log(color('\n  Available tasks:', 'CYAN'));
     console.log(color('      - unusual-dev', 'CYAN'));
     console.log(color('      - unusual-build', 'CYAN'));
+    console.log(color('      - unusual-injections', 'CYAN'));
     console.log('\n');
 });
+
+gulp.task('help', ['options']);
+gulp.task('tasks', ['options']);
+gulp.task('list-tasks', ['options']);
 
 
 gulp.task('unusual-dev', ['dev-js', 'dev-js-libs-local', 'dev-js-libs-foreign', 'dev-css', 'dev-images', 'dev-fonts', 'dev-index']);
