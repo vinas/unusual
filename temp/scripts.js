@@ -34,14 +34,14 @@ function displayTile(tile) {
 function displayTiles(tiles, caption) {
     if (caption) document.getElementById('container').innerHTML += '<br/><br/>'+caption+'<br/>';
     for (var i = 0; i < tiles.length; i++) {
-        displayTile(tiles[i]);
+        displayTile(tiles[i].image);
         if (i != 0 && (i+1) % 20 == 0) document.getElementById('container').innerHTML += '<br/>';
     }
 }
 
 
 
-function loadTiles() {
+function loadTiles(callback) {
     cutImageUp();
     tileObj.background = {};
 
@@ -59,19 +59,21 @@ function loadTiles() {
     tileObj.background.details = [];
 
 
-    loadTileCategory(0, 67, tileObj.background.dungeon);
-    loadTileCategory(68, 82, tileObj.background.desert);
-    loadTileCategory(83, 97, tileObj.background.forest);
-    loadTileCategory(98, 112, tileObj.background.grassland);
-    loadTileCategory(113, 115, tileObj.background.jungle);
-    loadTileCategory(116, 121, tileObj.background.snowForest);
-    loadTileCategory(122, 131, tileObj.background.swamp);
-    loadTileCategory(132, 148, tileObj.background.tundra);
-    loadTileCategory(149, 155, tileObj.background.water);
-    loadTileCategory(156, 165, tileObj.background.river);
-    loadTileCategory(166, 169, tileObj.background.grassland);
-    loadTileCategory(170, 176, tileObj.background.locations);
-    loadTileCategory(177, 219, tileObj.background.details);
+    loadTileCategory(0, 67, tileObj.background.dungeon, true);
+    loadTileCategory(68, 82, tileObj.background.desert, true);
+    loadTileCategory(83, 97, tileObj.background.forest, true);
+    loadTileCategory(98, 112, tileObj.background.grassland, true);
+    loadTileCategory(113, 115, tileObj.background.jungle, true);
+    loadTileCategory(116, 121, tileObj.background.snowForest, true);
+    loadTileCategory(122, 131, tileObj.background.swamp, true);
+    loadTileCategory(132, 148, tileObj.background.tundra, true);
+    loadTileCategory(149, 155, tileObj.background.water, true);
+    loadTileCategory(156, 165, tileObj.background.river, true);
+    loadTileCategory(166, 169, tileObj.background.grassland, true);
+    loadTileCategory(170, 176, tileObj.background.locations, true);
+    loadTileCategory(177, 219, tileObj.background.details, false);
+
+    if (callback) callback();
 }
 
 function displayAllTiles() {
@@ -89,12 +91,15 @@ function displayAllTiles() {
     displayTiles(tileObj.background.details, 'background.details');
 }
 
-function loadTileCategory(start, end, arr) {
+function loadTileCategory(start, end, arr, stepable) {
     var count = arr.length;
     end++;
     for (i = start; i < end; i++) {
-        arr[count] = tiles[i];
+        arr[count] = {};
+        arr[count].image = tiles[i];
+        arr[count].stepable = stepable;
         count++;
     }
 
 }
+
