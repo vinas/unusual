@@ -131,9 +131,35 @@ function generateMap(type, callback) {
 }
 
 document.addEventListener('click', function(e) {
+    var shiftEl;
     e.preventDefault();
     
     if (e.srcElement.getAttribute('map') == 'true') {
+        if (e.shiftKey) {
+            console.log();
+            for (var x = 0; x <= Math.floor(e.srcElement.id / 10); x++) {
+                for (var y = 0; y <= e.srcElement.id % 10; y++) {
+                    shiftEl = document.getElementById(x*10+y);
+                    if (shiftEl.getAttribute('selected') == 'true') {
+                        shiftEl.style.padding = '0px';
+                        shiftEl.style.backgroundColor = '#000';
+                        shiftEl.setAttribute('selected', false);
+                        for (var i = 0; i < selected.length; i++) {
+                            if (selected[i] == shiftEl.id) {
+                                selected.splice(i, 1);
+                                break;
+                            }
+                        }
+                    } else {
+                        shiftEl.style.padding = '2px';
+                        shiftEl.style.backgroundColor = '#FFC';
+                        shiftEl.setAttribute('selected', true);
+                        selected.push(shiftEl.id);
+                    }
+                }
+            }
+            return;
+        }
         if (e.srcElement.getAttribute('selected') == 'true') {
             e.srcElement.style.padding = '0px';
             e.srcElement.style.backgroundColor = '#000';
