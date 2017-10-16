@@ -1,10 +1,13 @@
-var image = new Image();
+var image = new Image(),
+    tiles = [],
+    map = [],
+    selected = [];
 image.src = 'tiles.png';
 numColsToCut = 20;
 numRowsToCut = 11;
 widthOfOnePiece = 32;
 heightOfOnePiece = 32;
-var tiles = [];
+
 
 var tileObj = {};
 
@@ -28,18 +31,29 @@ function cutImageUp() {
 }
 
 function displayTile(tile) {
+    tile.setAttribute('srctile', true);
     document.getElementById('container').appendChild(tile);
 }
 
-function displayTiles(tiles, caption) {
+function displayTiles(bkgTiles, caption) {
     if (caption) document.getElementById('container').innerHTML += '<br/><br/>'+caption+'<br/>';
-    for (var i = 0; i < tiles.length; i++) {
-        displayTile(tiles[i].image);
+    for (var i = 0; i < bkgTiles.length; i++) {
+        displayTile(bkgTiles[i].image);
         if (i != 0 && (i+1) % 20 == 0) document.getElementById('container').innerHTML += '<br/>';
     }
 }
 
-
+function displayMap() {
+    var mapContainer = document.getElementById('map');
+    var tile;
+    mapContainer.innerHTML = '';
+    for (var i = 0; i < map.length; i++) {
+        map[i].image.id = i;
+        mapContainer.appendChild(map[i].image);
+        mapContainer.innerHTML += '';
+        if (i != 0 && (i+1) % 10 == 0) mapContainer.innerHTML += '<br/>';
+    }
+}
 
 function loadTiles(callback) {
     cutImageUp();
@@ -100,6 +114,47 @@ function loadTileCategory(start, end, arr, stepable) {
         arr[count].stepable = stepable;
         count++;
     }
-
 }
 
+function generateMap(type, callback) {
+    var totTiles = tileObj.background[type].length,
+        idx, temp;
+    for (var i = 0; i < 100; i++) {
+        idx = Math.floor((Math.random() * totTiles));
+        temp = tileObj.background[type].slice(idx)[0];
+        map[i] = temp;
+        map[i].image.setAttribute('srctile', false);
+        map[i].image.setAttribute('map', true);
+        map[i].image.setAttribute('selected', false);
+    }
+    if (callback) callback();
+}
+
+document.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    if (e.srcElement.getAttribute('map') == 'true') {
+        if (e.srcElement.getAttribute('selected') == 'true') {
+            e.srcElement.style.padding = '0px';
+            e.srcElement.style.backgroundColor = '#000';
+            e.srcElement.setAttribute('selected', false);
+            for (var i = 0; i < selected.length; i++) {
+                if (selected[i] == e.srcElement.id) {
+                    selected.splice(i, 1);
+                    break;
+                }
+            }
+        } else {
+            e.srcElement.style.padding = '2px';
+            e.srcElement.style.backgroundColor = '#FFC';
+            e.srcElement.setAttribute('selected', true);
+            selected.push(e.srcElement.id);
+        }
+    }
+
+    if (e.srcElement.getAttribute('srctile') == 'true') {
+        for (var i = 0; i < selected.length; i++) {
+            document.getElementById(selected[i]).src = e.srcElement.src;
+        }
+    }
+});
