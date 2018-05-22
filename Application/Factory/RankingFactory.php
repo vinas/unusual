@@ -4,7 +4,7 @@
 *
 * @author Vinas de Andrade <vinas.andrade@gmail.com>
 * @since 2017/08/25
-* @version 1.17.0913
+* @version 1.17.0918
 * @license SaSeed\license.txt
 */
 
@@ -41,7 +41,7 @@ class RankingFactory extends \SaSeed\Database\DAO {
                     'userId',
                     'gs'
                 );
-            $this->queryBuilder->rawWhere('gs.gameId = '.$gameId.' GROUP BY gs.userId ORDER BY MAX(gs.score * 1) DESC LIMIT 0, 10');
+            $this->queryBuilder->rawWhere('gs.gameId = '.$gameId.' GROUP BY gs.userId ORDER BY MAX(gs.score * 1) DESC, gs.id DESC LIMIT 0, 10');
             $res = $this->db->getRows($this->queryBuilder->getQuery());
             for ($i = 0; $i < count($res); $i++) {
                 $res[$i] = Mapper::populate(
@@ -67,7 +67,7 @@ class RankingFactory extends \SaSeed\Database\DAO {
                     'userId',
                     'gs'
                 );
-            $this->queryBuilder->rawWhere('gs.gameId = '.$gameId.' GROUP BY gs.userId ORDER BY score ASC LIMIT 0, 10');
+            $this->queryBuilder->rawWhere('gs.gameId = '.$gameId.' GROUP BY gs.userId ORDER BY score ASC, gs.id DESC LIMIT 0, 10');
             $res = $this->db->getRows($this->queryBuilder->getQuery());
             for ($i = 0; $i < count($res); $i++) {
                 $res[$i] = Mapper::populate(

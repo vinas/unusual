@@ -1,0 +1,71 @@
+@font-face {
+    font-family: BitParty;
+    src: url('../font/8_bit_party.ttf');
+}
+
+@font-face {
+    font-family: BitOperator;
+    src: url('../font/8bitoperator.ttf');
+}
+
+body {
+    background-color: #14757A;
+    font-family: BitParty;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: -webkit-fill-available;
+}
+
+.contItems {
+    overflow-y: scroll;
+    height: -webkit-fill-available;
+    padding-bottom: 5%;
+}
+
+.element {
+    position: relative;
+}
+
+.title {
+    font-size: xx-large;
+    text-shadow: 6px 6px 7px #000;
+    color: #CBF;
+    padding: 5%;
+}
+
+.gameLink {
+    width: 22%;
+    padding: 5%;
+    margin-top: 5%;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+.errorMessage {
+    color: #FFF;
+    margin-top: 2%;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.userPicture {
+    position: absolute;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    top: 5%;
+    z-index: 2;
+}

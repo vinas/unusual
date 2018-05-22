@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+        <meta charset="UTF-8">
+        <title>Ascii World Adventure - Level 03</title>
+        <meta content='width=100%, user-scalable=no, initial-scale=1.0' name='viewport' />
+        <script type="text/javascript" src="/js/libs/local/ajax.js"></script>
+        <script type="text/javascript" src="/js/libs/local/unusual.js"></script>
+        <script type="text/javascript" src="/js/login.js"></script>
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="content">
+            <br/>
+            <label>It's Coming soon...</label>
+            <br/><br/>
+            <label>Support us, and it'll come sooner! =)</label>
+            <br/><br/><br/>
+            <label><a style="color: #2266FA;" onclick="go('/asciiworld/')">This</a> will take you back to the <a style="color: #2266FA;" onclick="go('/asciiworld/')">FIRST LEVEL</a>.</label>
+            <br/><br/>
+            <label><a style="color: #2266FA;" onclick="go('/asciiworld/level02.html')">This</a> will take you back to the <a style="color: #2266FA;" onclick="go('/asciiworld/level02.html')">SECOND LEVEL</a>.</label>
+            <br/><br/>
+            <label><a style="color: #2266FA;" onclick="go('/')">This</a> will take you back to the <a style="color: #2266FA;" onclick="go('/')">UNUSUAL DEV</a> main page.</label>
+        </div>
+    </body>
+    <script>
+        ajax = Ajax();
+        login = Login();
+        user = {};
+        user.accessToken = login.getUrlParam('sessionToken');
+        if (user.accessToken) {
+            login.fetchUserInfo(user.accessToken);
+        }
+
+        function go(uri) {
+            window.location.href = uri+'?sessionToken='+user.accessToken;
+            return false;
+        }
+    </script>
+</html>

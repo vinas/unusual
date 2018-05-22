@@ -1,0 +1,33 @@
+<html>
+<head>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+	<title>Dalek vs TARDIS</title>
+    <meta content='width=100%, user-scalable=no, initial-scale=1.0' name='viewport' />
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
+
+	<div id="content">
+        <div class="hidable" id="game">
+            <div id="fundo" class="fundo"></div>
+            <img id="dalek" class="personagem" src="img/dalek_01.png" />
+            <img id="tardis" class="tardis" src="img/tardis_01.png" />
+            <div id="tiro" class="tiro"></div>
+            <div id="score" class="score">0</div>
+            <div id="leftSensor" class="tapMove"></div>
+            <div id="rightSensor" class="tapShoot"></div>
+        </div>
+        <label class="startTap hidable" id="startGame" onclick="$.resetGame();">tap to start</label>
+        <div class="hidable" id="ranking">ranking<br/><br/><div onclick="$.resetGame();">reset game</div></div>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="/js/libs/foreign/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/libs/local/ajax.js"></script>
+<script type="text/javascript" src="/js/libs/local/unusual.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+
+</html>
